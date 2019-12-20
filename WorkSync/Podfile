@@ -1,0 +1,17 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :osx, '10.14'
+
+inhibit_all_warnings!
+
+use_frameworks!
+
+install! 'cocoapods', :deterministic_uuids => false
+
+def all_pods
+  pod 'SnapKit'
+end
+
+target 'WorkSync' do
+  all_pods
+end
