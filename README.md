@@ -18,4 +18,10 @@ Git-localpath2;
 Git-localpath3;
 ```
 
-每四小时将本地内容push到远端一次
+定时将本地内容push到远端一次
+
+建议，将App加入/Application后，在设置中将起加入自动启动
+
+
+
+<img src="11577094454.jpg" width=400 align=left>
