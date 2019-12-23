@@ -58,7 +58,7 @@ class ViewController: NSViewController {
         btnSync.action = #selector(self.sync)
         
         
-        self.timer = Timer(timeInterval: 1800, target: self, selector: #selector(self.checkoutTime), userInfo: nil, repeats: true)
+        self.timer = Timer(timeInterval: 10, target: self, selector: #selector(self.checkoutTime), userInfo: nil, repeats: true)
         RunLoop.current.add(self.timer!, forMode: .common)
         
         if let preDirs = UserDefaults.standard.value(forKey: WSGitDirsKey) as? String {
@@ -145,17 +145,19 @@ extension ViewController {
     
     private func upload() {
         self.preTime = Date().timeIntervalSince1970
-        let arr = dirsStr.components(separatedBy: ";\n")
+        let arr = dirsStr.replacingOccurrences(of: " ", with: "").components(separatedBy: ";\n")
         
         for dir in arr {
-            WYGitBash.syncToRemote(path: dir)
+            if dir.count > 0 {
+                WYGitBash.syncToRemote(path: dir)
+            }
         }
     }
     
     @objc private func checkoutTime() {
         let btTime:TimeInterval = Date().timeIntervalSince1970 - self.preTime
         
-        if btTime > TimeInterval(hourMargin) * 3600 {
+        if btTime > TimeInterval(0) * 3600 {
             upload()
         }
     }

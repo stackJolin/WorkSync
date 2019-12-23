@@ -11,6 +11,8 @@ import Foundation
 class WYGitBash {
     class func syncToRemote(path:String) {
         let argument = "cd \(path); git add .; git commit -m 'update'; git push; cd ..;"
+//        let argument = "cd \(path); git add .; cd ..;"
         let result = WYCmd.execCmd(arguments: ["-c", argument])
+        print(result)
     }
 }
