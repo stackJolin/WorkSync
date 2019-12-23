@@ -683,10 +683,22 @@
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="r5k-Fy-mon">
                     <items>
-                        <menuItem title="Config" id="a18-co-Eqg">
+                        <menuItem title="Setting" id="a18-co-Eqg">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="Config:" target="Voe-Tx-rLC" id="ZeI-9s-a12"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Pull All" id="ImO-Ax-eI8">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="Pull:" target="Voe-Tx-rLC" id="gGX-4U-wfR"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Push All" id="3Gw-RG-Gdv">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="push:" target="Voe-Tx-rLC" id="iPK-bZ-LjT"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Quit" id="EOv-KV-Vx4">

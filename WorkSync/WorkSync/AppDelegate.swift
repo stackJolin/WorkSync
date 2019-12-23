@@ -34,6 +34,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.windows.last?.makeKeyAndOrderFront(nil)
     }
     
+    @IBAction func push(_ sender: Any) {
+        if let vc = NSApp.windows.last?.contentViewController, vc.isKind(of: ViewController.self) {
+            let a = vc as! ViewController
+            a.pushAll()
+        }
+    }
+    
+    @IBAction func Pull(_ sender: Any) {
+        if let vc = NSApp.windows.last?.contentViewController, vc.isKind(of: ViewController.self) {
+            let a = vc as! ViewController
+            a.pullAll()
+        }
+    }
+    
     @IBAction func Quit(_ sender: Any) {
         NSApp.terminate(self)
     }

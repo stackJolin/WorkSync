@@ -174,4 +174,24 @@ extension ViewController {
             hourMargin = 4
         }
     }
+    
+    func pullAll() {
+        let arr = dirsStr.replacingOccurrences(of: " ", with: "").components(separatedBy: ";\n")
+        
+        for dir in arr {
+            if dir.count > 0 {
+                WYGitBash.syncPull(path: dir)
+            }
+        }
+    }
+    
+    func pushAll() {
+        let arr = dirsStr.replacingOccurrences(of: " ", with: "").components(separatedBy: ";\n")
+        
+        for dir in arr {
+            if dir.count > 0 {
+                WYGitBash.syncPush(path: dir)
+            }
+        }
+    }
 }
