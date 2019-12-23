@@ -15,6 +15,7 @@ class ViewController: NSViewController {
 
     private var timer:Timer?
     private var preTime:TimeInterval = Date().timeIntervalSince1970
+    private var hourMargin:Int = 4
     
     private var dirsStr:String = ""
     
@@ -26,6 +27,7 @@ class ViewController: NSViewController {
         view.addSubview(lbTitle)
         view.addSubview(scrollView)
         view.addSubview(btnSync)
+        view.addSubview(btnPop)
         
         lbTitle.snp.remakeConstraints { (snp) in
             snp.left.equalTo(self.view).offset(20)
@@ -47,6 +49,11 @@ class ViewController: NSViewController {
             snp.bottom.equalTo(self.btnSync.snp.top).offset(-20)
         }
         
+        btnPop.snp.remakeConstraints { (snp) in
+            snp.right.equalTo(self.tv)
+            snp.top.equalTo(self.lbTitle)
+        }
+        
         btnSync.target = self
         btnSync.action = #selector(self.sync)
         
@@ -58,6 +65,9 @@ class ViewController: NSViewController {
             self.tv.string = preDirs
             self.dirsStr = preDirs
         }
+        
+        btnPop.target = self
+        btnPop.action = #selector(self.popUpBtnAction(btn:))
     }
     
     override var representedObject: Any? {
@@ -111,6 +121,12 @@ class ViewController: NSViewController {
         obj.title = "同步"
         return obj
     }()
+    
+    private lazy var btnPop:NSPopUpButton = {
+        let obj = NSPopUpButton()
+        obj.addItems(withTitles: ["1 hour", "2 hour", "4 hour"])
+        return obj
+    }()
 }
 
 extension ViewController {
@@ -139,8 +155,21 @@ extension ViewController {
     @objc private func checkoutTime() {
         let btTime:TimeInterval = Date().timeIntervalSince1970 - self.preTime
         
-        if btTime > 4 * 3600 {
+        if btTime > TimeInterval(hourMargin) * 3600 {
             upload()
+        }
+    }
+    
+    @objc private func popUpBtnAction(btn:NSPopUpButton) {
+        let index = btn.indexOfSelectedItem;
+        if index == 1 {
+            hourMargin = 1
+        }
+        else if index == 2 {
+            hourMargin = 2
+        }
+        else if index == 3 {
+            hourMargin = 4
         }
     }
 }
